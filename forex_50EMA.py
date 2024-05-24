@@ -106,7 +106,9 @@ def main(pairs):
     return signals_df
 
 # Example list of forex pairs (you need to provide the actual list)
-forex_pairs = ['EURUSD=X', 'GBPUSD=X', 'USDJPY=X', 'AUDUSD=X', 'USDCAD=X']
+# forex_pairs = ['EURUSD=X', 'GBPUSD=X', 'USDJPY=X', 'AUDUSD=X', 'USDCAD=X']
+
+forex_pairs = ['CADUSD=X', 'CADEUR=X', 'CADGBP=X', 'CADCNY=X', 'EURUSD=X', 'JPY=X', 'GBPUSD=X', 'CHF=X', 'AUDUSD=X', 'AUDJPY=X', 'NZDUSD=X', 'EURJPY=X', 'GBPJPY=X', 'EURGBP=X', 'EURSEK=X', 'EURCHF=X', 'EURHUF=X', 'EURJPY=X', 'CNY=X', 'USDHKD=X', 'USDSGD=X', 'USDINR=X', 'USDMXN=X', 'USDPHP=X', 'USDIDR=X', 'USDTHB=X', 'USDMYR=X', 'USDZAR=X', 'USDRUB=X']
 
 signals_df = main(forex_pairs)
 
