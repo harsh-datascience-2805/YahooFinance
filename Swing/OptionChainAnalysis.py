@@ -69,8 +69,8 @@ ce_last_price = df.loc[df['CE.openInterest'] == max_ce_oi, 'CE.lastPrice'].value
 pe_last_price = df.loc[df['PE.openInterest'] == max_pe_oi, 'PE.lastPrice'].values[0]
 
 # Print support and resistance level
-print("Support Level: {:.2f}".format(ce_strike_price + (ce_last_price + pe_last_price)))
-print("Resistance Level: {:.2f}".format(pe_strike_price - (pe_last_price + ce_last_price)))
+print("Resistance Level: {:.2f}".format(ce_strike_price + (ce_last_price + pe_last_price)))
+print("Support Level: {:.2f}".format(pe_strike_price - (pe_last_price + ce_last_price)))
 
 # Calculate PCR ratio
 pcr_ratio = df['PE.openInterest'].sum() / df['CE.openInterest'].sum()
@@ -81,12 +81,12 @@ if pcr_ratio > 1.8:
 elif pcr_ratio > 1.5 and pcr_ratio < 1.8:
     print("Market sentiment is very bearish.")
 elif pcr_ratio > 1.2 and pcr_ratio < 1.5:
-        print("Market sentiment is bearish.")
+    print("Market sentiment is bearish.")
 elif pcr_ratio > 0.8 and pcr_ratio < 1.2:
-        print("Market sentiment is neutral.")
+    print("Market sentiment is neutral.")
 elif pcr_ratio > 0.5 and pcr_ratio < 0.8:
-        print("Market sentiment is bearish.")
+    print("Market sentiment is bearish.")
 elif pcr_ratio > 0.2 and pcr_ratio < 0.5:
-        print("Market sentiment is very bearish.")
+    print("Market sentiment is very bearish.")
 else:
     print("Market sentiment is extream bearish (over sold), posibility of correction don't place sell orders.")
