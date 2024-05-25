@@ -1,3 +1,5 @@
+#to get historical data of EQ from NSE India website. 
+
 import requests
 import pandas as pd
 from io import BytesIO
@@ -56,7 +58,7 @@ class NSE():
 
 if __name__ == "__main__":
     from datetime import date
-    from nse import NSE
+    from Swing.nse import NSE
     api = NSE()
     df = api.getHistoricalData('SBIN', 'EQ', date(2023, 1, 1), date(2023, 5, 21))
     print(df)
