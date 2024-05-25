@@ -71,4 +71,4 @@ if __name__ == "__main__":
     elif pcr_ratio > 0.2 and pcr_ratio < 0.5:
         print("Market sentiment is very bearish.")
     else:
-        print("Market sentiment is extream bullish (over sold), posibility of correction don't place sell orders.")
+        print("Market sentiment is extream bearish (over sold), posibility of correction don't place sell orders.")
