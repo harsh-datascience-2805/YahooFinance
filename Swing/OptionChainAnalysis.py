@@ -51,8 +51,8 @@ if __name__ == "__main__":
     pe_last_price = df.loc[df['PE.openInterest'] == max_pe_oi, 'PE.lastPrice'].values[0]
 
     # Print support and resistance level
-    print("Support Level: {:.2f}".format(ce_strike_price + ce_last_price + pe_last_price))
-    print("Resistance Level: {:.2f}".format(pe_strike_price + pe_last_price + ce_last_price))
+    print("Support Level: {:.2f}".format(ce_strike_price + (ce_last_price + pe_last_price)))
+    print("Resistance Level: {:.2f}".format(pe_strike_price - (pe_last_price + ce_last_price)))
 
     # Calculate PCR ratio
     pcr_ratio = df['PE.openInterest'].sum() / df['CE.openInterest'].sum()

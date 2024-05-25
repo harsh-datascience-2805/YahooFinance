@@ -24,13 +24,13 @@ signals_df = pd.DataFrame()
 for symbol in symbols:
     # Download stock data from Yahoo Finance
     stock = yf.Ticker(symbol)
-    df = stock.history(period="max")
+    df = stock.history(period="1y")
 
     # Ensure the dataframe does not contain NaN values
     df = dropna(df)
 
     # Calculate RSI
-    rsi = RSIIndicator(close=df['Close'], window=14)
+    rsi = RSIIndicator(df['Close'], 14)
     df['RSI'] = rsi.rsi()
 
     # Add the symbol column
