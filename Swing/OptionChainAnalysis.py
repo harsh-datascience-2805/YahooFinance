@@ -4,8 +4,6 @@
 
 import requests
 import pandas as pd
-import requests
-import pandas as pd
 from dateutil import parser
 
 class OptionChain:
@@ -54,12 +52,15 @@ if __name__ == "__main__":
     if series.upper() == "Y":
         objeq = OptionChain(series='equities', symbol=symbol)
         df = objeq.fetch_data(expiry_date=expiry_date)
-    else:
+    elif series.upper() == "N":
         objid = OptionChain(symbol=symbol)
+        df = objid.fetch_data(expiry_date=expiry_date)
+    else:
+        objid = OptionChain()
         df = objid.fetch_data(expiry_date=expiry_date)
 
     print(df)
-    print("Symbol:", symbol)
+    print("Symbol:", symbol or "NIFTY")
     print("Expiry Date:", expiry_date)
 
 # Find corresponding CE.lastPrice and PE.lastPrice for max CE.openInterest and PE.openInterest
