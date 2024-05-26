@@ -20,7 +20,8 @@ sell_df = pd.DataFrame(columns=['Symbol', 'Date', 'Close'])
 for symbol in symbols:
     # Download stock data from Yahoo Finance
     stock = yf.Ticker(symbol)
-    df = stock.history(period="max")
+    df = stock.history(period="2y")
+    print(df.columns)
 
     # Ensure the dataframe does not contain NaN values
     df = dropna(df)
