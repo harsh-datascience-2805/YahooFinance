@@ -1,6 +1,6 @@
 import yfinance as yf
 import pandas as pd
-from ta.momentum import RSIIndicator
+#from ta.momentum import RSIIndicator
 from ta.utils import dropna
 
 def get_signals(df):
@@ -21,6 +21,26 @@ symbols = ['ABB.NS', 'ADANIENSOL.NS', 'ADANIENT.NS', 'ADANIGREEN.NS', 'ADANIPORT
 # Create an empty DataFrame to store the RSI values and signals
 signals_df = pd.DataFrame()
 
+def calculate_rsi(df, period=14):
+    # Calculate price changes
+    delta = df['Close'].diff()
+
+    # Separate gains (positive changes) and losses (negative changes)
+    gain = delta.where(delta > 0, 0)
+    loss = -delta.where(delta < 0, 0)
+
+    # Calculate average gains and losses using exponential moving average (EMA)
+    avg_gain = gain.ewm(span=period, adjust=False).mean()
+    avg_loss = loss.ewm(span=period, adjust=False).mean()
+
+    # Calculate relative strength (RS)
+    rs = avg_gain / avg_loss
+
+    # Calculate RSI
+    rsi = 100 - (100 / (1 + rs))
+
+    return rsi
+
 for symbol in symbols:
     # Download stock data from Yahoo Finance
     stock = yf.Ticker(symbol)
@@ -29,8 +49,9 @@ for symbol in symbols:
     # Ensure the dataframe does not contain NaN values
     df = dropna(df)
 
-    # Calculate RSI
-    rsi = RSIIndicator(df['Close'], 14)
+    # Calculate RSI    
+    #rsi = RSIIndicator(df['Close'], 14)
+    rsi = calculate_rsi(df, period=14)
     df['RSI'] = rsi.rsi()
 
     # Add the symbol column
@@ -48,3 +69,5 @@ for symbol in symbols:
 
 # Export the DataFrame to a CSV file
 signals_df.to_csv('rsi_signals.csv', index_label='Date')
+
+#print(rsi)  # Display the last few RSI values

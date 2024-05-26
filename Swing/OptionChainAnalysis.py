@@ -1,3 +1,7 @@
+# Title: Option Chain Analysis
+# Description: To get the option chain data from NSE India and analyze it to find the support and resistance level, PCR ratio, and market sentiment.
+# (C) 2023-2024 sannit vartak v1.0 (2023-02-26)
+
 import requests
 import pandas as pd
 import requests
